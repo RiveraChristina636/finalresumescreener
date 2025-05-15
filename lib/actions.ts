@@ -8,7 +8,7 @@ export async function uploadResume(formData: FormData) {
   try {
     const file = formData.get("file") as File
     const email = formData.get("email") as string
-    const name = formData.get("name") as string
+    const name = (formData.get("name") as string) || "Anonymous" // Using name with a default
     const jobDescription = formData.get("jobDescription") as string
 
     if (!file || !email || !jobDescription) {
@@ -20,8 +20,10 @@ export async function uploadResume(formData: FormData) {
       access: "public",
     })
 
-    // In a real app, you would save this to your database
+    // In a real app, you would save this to your database with the blob URL
     const submissionId = Math.floor(Math.random() * 1000) + 1
+
+    console.log(`Resume uploaded for ${name} (${email}) with URL: ${blob.url}`)
 
     return { success: true, submissionId }
   } catch (error) {
@@ -87,7 +89,9 @@ export async function getSubmissionById(id: string) {
 export async function getUserSubmissions(email: string) {
   try {
     // This is mock data for demonstration
-    // In a real app, you would fetch this from your database
+    // In a real app, you would fetch this from your database based on the email
+    console.log(`Fetching submissions for email: ${email}`)
+
     return [
       {
         id: 1,
