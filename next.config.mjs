@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Use static export
-  reactStrictMode: true,
+  // Remove the output: 'export' line
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -10,11 +9,7 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
-  },
-  // Disable server components to avoid hydration issues
-  experimental: {
-    serverComponents: false,
-  },
+  }
 }
 
 export default nextConfig
