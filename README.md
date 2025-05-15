@@ -1,49 +1,108 @@
 # AI Job Application Screener
 
-A full-stack application that helps job seekers improve their applications with AI-powered insights. Upload a resume and job description to get AI-generated feedback, interview prep questions, and recommendations for revision.
+**AI-Powered Job Application Screening** is a full-stack web application that allows users to upload their resume and a job description to receive instant AI-generated feedback, including:
 
-## Project Overview
+* **Match Analysis**: A compatibility score between the resume and the job listing.
+* **Resume Feedback**: Actionable suggestions for improving formatting, keyword usage, and content.
+* **Interview Prep**: AI-generated interview questions tailored to the job.
+* **Skill Recommendations**: Suggested skills and certifications to boost candidacy.
 
-The AI Job Application Screener is designed to help job seekers improve their chances of landing interviews by providing AI-powered analysis of their resumes against specific job descriptions.
+The app is designed for students, job seekers, and career coaches who want data-driven insights to optimize their applications and beat automated screening systems.
 
-## Getting Started
-
-1. Clone this repository
-2. Install dependencies: `npm install`
-3. Copy `.env.example` to `.env.local` and fill in your environment variables
-4. Run the development server: `npm run dev`
-5. Open [http://localhost:3000](http://localhost:3000) in your browser
-
-## Project Structure
-
-- `/app` - Next.js App Router pages
-- `/components` - React components
-- `/lib` - Utility functions and server actions
-- `/db` - Database schema and seed data
-
-## Features to Implement
-
-- Resume upload and storage
-- Job description input
-- AI analysis of resume against job description
-- Feedback generation
-- Interview question generation
-- Recommendation for resume revisions
-- User dashboard for viewing past analyses
+---
 
 ## Technologies Used
 
-- Next.js 14 (App Router)
-- React
-- Tailwind CSS
-- Neon PostgreSQL
-- OpenAI API
-- Vercel Blob Storage
+* **Next.js** (app router) for server-side rendering and API routes
+* **Tailwind CSS** for utility-first styling
+* **Radix UI** & **Lucide React** for accessible components and icons
+* **Prisma** ORM with **Neon** PostgreSQL for database storage
+* **OpenAI API** (with ChatGPT) for generating feedback and interview questions
+* **Vercel** (v0 CLI) for continuous deployment
 
-## License
+**Developer Tools:** VS Code, GitHub Copilot, ChatGPT
 
-This project is licensed under the MIT License.
-\`\`\`
+---
+
+## Getting Started
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/RiveraChristina636/finalresumescreener.git
+   cd finalresumescreener
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment variables**
+   Create a `.env.local` file in the project root with the following entries:
+
+   ```ini
+   DATABASE_URL="postgresql://<username>:<password>@<host>:5432/<database>"
+   OPENAI_API_KEY="sk-..."
+   ```
+
+   * Set `DATABASE_URL` to your Neon (PostgreSQL) connection string.
+   * Set `OPENAI_API_KEY` to your OpenAI secret key.
+
+4. **Run the development server**
+
+   ```bash
+   npm run dev
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+5. **Build for production**
+
+   ```bash
+   npm run build
+   npm run start
+   ```
+
+6. **Deploy to Vercel**
+
+   * Install Vercel CLI: `npm install -g vercel@latest`
+   * Run `vercel` and follow the prompts.
+
+---
+
+## Live Demo
+
+🔗 [https://finalresumescreener.vercel.app/](https://finalresumescreener.vercel.app/)
+
+---
+
+## Team Members
+
+* Christina Rivera (solo project)
+
+---
+
+## Development Notes & Lessons Learned
+
+* **Deployment Challenges**: Aligning local Next.js v0 development (v0.dev) styling with Vercel’s production build required troubleshooting Tailwind CSS imports (`globals.css`), PostCSS configuration, and ensuring `@tailwind` directives were processed.
+* **Peer Dependency Fixes**: Resolved several NPM dependency conflicts (React types, Radix UI packages, lucide-react) by pinning versions and cleaning the lockfile.
+* **AI-Assisted Coding**: Leveraged ChatGPT and GitHub Copilot extensively for:
+
+  * Generating UI component boilerplate
+  * Debugging CSS and build errors
+  * Crafting README documentation
+* **What I Learned**:
+
+  * The importance of correct PostCSS setup (`postcss.config.js`) for Tailwind in production
+  * How to integrate Prisma with Neon Postgres on a serverless platform
+  * Best practices for structuring a Next.js 14+ app router project
+
+---
+
+*Thank you for trying out AI Job Application Screener! Feedback and contributions are welcome.*
+
 
 ```gitignore file=".gitignore"
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
