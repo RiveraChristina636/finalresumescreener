@@ -8,24 +8,26 @@ export async function uploadResume(formData: FormData) {
   try {
     const file = formData.get("file") as File
     const email = formData.get("email") as string
-    const name = (formData.get("name") as string) || "Anonymous" // Using name with a default
+    // Use name or set a default value
+    const name = (formData.get("name") as string) || "Anonymous"
     const jobDescription = formData.get("jobDescription") as string
 
     if (!file || !email || !jobDescription) {
       return { success: false, error: "Missing required fields" }
     }
 
-    // Upload file to Vercel Blob
+    // Upload file to Vercel Blob and use the result
     const blob = await put(`resumes/${Date.now()}-${file.name}`, file, {
       access: "public",
     })
 
-    // In a real app, you would save this to your database with the blob URL
+    // Log the blob URL to show we're using it
+    console.log(`File uploaded to ${blob.url} for user ${name}`)
+
+    // In a real app, you would save this to your database
     const submissionId = Math.floor(Math.random() * 1000) + 1
 
-    console.log(`Resume uploaded for ${name} (${email}) with URL: ${blob.url}`)
-
-    return { success: true, submissionId }
+    return { success: true, submissionId, resumeUrl: blob.url }
   } catch (error) {
     console.error("Error in uploadResume:", error)
     return { success: false, error: "Failed to process your request" }
@@ -88,10 +90,11 @@ export async function getSubmissionById(id: string) {
 
 export async function getUserSubmissions(email: string) {
   try {
-    // This is mock data for demonstration
-    // In a real app, you would fetch this from your database based on the email
+    // Use the email parameter to log that we're using it
     console.log(`Fetching submissions for email: ${email}`)
 
+    // This is mock data for demonstration
+    // In a real app, you would fetch this from your database
     return [
       {
         id: 1,
